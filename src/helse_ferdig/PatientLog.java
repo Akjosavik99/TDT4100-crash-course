@@ -49,17 +49,15 @@ import java.util.stream.Collectors;
 	    
 	    this.knownDiseasesList = Arrays.asList(currentLine.split(","))
 	    							   .stream()
-	    							   //.filter(s -> !s.equals(""))
 	    							   .map(s -> new Disease(s))
 	    							   .collect(Collectors.toList());
 
 	    currentLine = reader.readLine();
 	    
 	    this.givenMedicationList = Arrays.asList(currentLine.split(","))
-	    							   .stream()
-	    							   //.filter(s -> !s.equals(""))
-	    							   .map(s -> new Medication(s))
-	    							   .collect(Collectors.toList());
+	    							     .stream()
+	    							     .map(s -> new Medication(s))
+	    							     .collect(Collectors.toList());
 	    
 	    reader.close();
 	}
