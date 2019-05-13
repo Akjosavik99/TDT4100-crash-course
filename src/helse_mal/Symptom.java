@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Symptom {
 	
-	private List<Cause> knownCauses = new ArrayList<>();
+	private List<Disease> knownCauses = new ArrayList<>();
 	private String description;
 	
 	public Symptom(String description) {
@@ -20,16 +20,15 @@ public class Symptom {
 		this.description = description;
 	}
 	
-	public List<Cause> getKnownCauses() {
+	public List<Disease> getKnownCauses() {
 		return knownCauses;
 	}
 	
-	public void addKnownCause(Cause cause) {
-		if (!knownCauses.contains(cause)) {
-			knownCauses.add(cause);
+	public void addKnownCause(Disease disease) {
+		if (!knownCauses.contains(disease)) {
+			knownCauses.add(disease);
 		}
 	}
-
 
 	@Override
 	public String toString() {

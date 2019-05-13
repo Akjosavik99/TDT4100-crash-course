@@ -1,6 +1,6 @@
 package helse_mal;
 
-public class Disease implements Cause {
+public class Disease {
 
 	private Medication remedy;
 	private String name;
@@ -9,22 +9,18 @@ public class Disease implements Cause {
 		this.name = name;
 	}
 
-	@Override
 	public String getName() {
 		return this.name;
 	}
 
-	@Override
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	@Override
 	public Medication getRemedy() {
 		return remedy;
 	}
-
-	@Override
+	
 	public void setRemedy(Medication remedy) {
 		this.remedy = remedy;
 	}

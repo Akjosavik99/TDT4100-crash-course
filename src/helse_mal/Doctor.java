@@ -33,8 +33,8 @@ public class Doctor //extends Person implements Employee //, ListListener
 			
 			symptom = patientSymptomIterator.next();
 			
-			for(Cause cause : symptom.getKnownCauses()) {
-				patientLog.addDisease((Disease) cause);
+			for(Disease disease : symptom.getKnownCauses()) {
+				patientLog.addDisease(disease);
 				if(!patientLog.getGivenMedicationList().contains(cause.getRemedy())) {
 					return cause.getRemedy();
 				}

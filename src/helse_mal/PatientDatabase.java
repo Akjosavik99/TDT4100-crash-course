@@ -18,7 +18,9 @@ public class PatientDatabase {
 	// Legger til PatientLog dersom Patient-objektet vi gir som input
 	// ikke allerede har en tilhørende PatientLog i systemet
 	public void addPatientLog(Patient patient) {
-		if (patientLogs.stream().anyMatch(patientLog -> patientLog.getPatient() == patient)) {
+		if (patientLogs.stream()
+					   .anyMatch(patientLog -> patientLog.getPatient() == patient))
+		{
 			throw new IllegalArgumentException("Patient already has a registered PatientLog");
 		}
 		patientLogs.add(new PatientLog(patient));
