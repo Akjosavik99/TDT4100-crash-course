@@ -1,4 +1,4 @@
-package helse;
+package helse_ferdig;
 
 import java.util.Arrays;
 import java.util.Iterator;

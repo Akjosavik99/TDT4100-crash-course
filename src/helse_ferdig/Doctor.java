@@ -1,4 +1,4 @@
-package helse;
+package helse_ferdig;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,11 +1,11 @@
-package helse;
+package helse_ferdig;
 
-public class Disease implements Cause {
+public class MedicalCondition implements Cause {
 
 	private Medication remedy;
 	private String name;
 	
-	public Disease(String name) {
+	public MedicalCondition(String name) {
 		this.name = name;
 	}
 
@@ -31,5 +31,6 @@ public class Disease implements Cause {
 	public String toString() {
 		return this.getName();
 	}
+
 
 }

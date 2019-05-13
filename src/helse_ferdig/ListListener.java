@@ -1,4 +1,4 @@
-package helse;
+package helse_ferdig;
 
 public interface ListListener {
 

@@ -1,4 +1,4 @@
-package helse;
+package helse_ferdig;
 
 public class Medication implements Comparable<Medication> {
 
