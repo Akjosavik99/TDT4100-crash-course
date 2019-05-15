@@ -1,5 +1,9 @@
 package helse_ferdig;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class Medication implements Comparable<Medication> {
 
 	private String name;
@@ -10,8 +14,8 @@ public class Medication implements Comparable<Medication> {
 	}
 	
 	public Medication(String name, double price) {
-		this.name = name;
 		if(price < 0) throw new IllegalArgumentException("Invalid price");
+		this.name = name;
 		this.price = price;
 	}
 	
@@ -28,6 +32,7 @@ public class Medication implements Comparable<Medication> {
 	}
 	
 	public void setPrice(double price) {
+		if(price < 0) throw new IllegalArgumentException("Invalid price");
 		this.price = price;
 	}
 
@@ -40,6 +45,17 @@ public class Medication implements Comparable<Medication> {
 	@Override
 	public String toString() {
 		return this.getName();
+	}
+	
+	public static void main(String[] args) {
+		List<Medication> meds = new ArrayList<>();
+		meds.add(new Medication("Naproxen", 100));
+		meds.add(new Medication("Fanalgin", 150));
+		meds.add(new Medication("Paracet", 90));
+		
+		System.out.println(meds);
+		Collections.sort(meds);
+		System.out.println(meds);
 	}
 
 }

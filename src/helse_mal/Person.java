@@ -18,6 +18,9 @@ public class Person {
 	}
 
 	public void setAge(int age) {
+		if(age < 0) {
+			throw new IllegalArgumentException("Invalid age");
+		}
 		this.age = age;
 	}
 

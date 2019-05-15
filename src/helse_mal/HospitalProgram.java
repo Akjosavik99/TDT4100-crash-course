@@ -41,9 +41,9 @@ public class HospitalProgram {
 		stOlavs.getPatientDB().addPatientLog(patient1);
 		stOlavs.handlePatient();
 		
-		System.out.println(patient1.getCurrentMedication().getName());
-		System.out.println(stOlavs.getPatientDB().getPatientLog(patient1).getGivenMedicationList());
-		System.out.println(stOlavs.getPatientDB().getPatientLog(patient1).getKnownDiseasesList());
+		System.out.println("\nPatientLog for "+ patient1 +"\nCurrent medication: "+patient1.getCurrentMedication().getName());
+		System.out.println("Medications:"+ stOlavs.getPatientDB().getPatientLog(patient1).getGivenMedicationList());
+		System.out.println("Known diseases:"+ stOlavs.getPatientDB().getPatientLog(patient1).getKnownDiseasesList()+"\n");
 		
 		try {
 			stOlavs.getPatientDB().getPatientLog(patient1).save("./magnus.txt");
@@ -56,9 +56,9 @@ public class HospitalProgram {
 		} catch (IOException e) {
 			System.out.println("Kunne ikke hente fra fil");
 		}
-
-		System.out.println(stOlavs.getPatientDB().getPatientLog(patient1).getGivenMedicationList());
-		System.out.println(stOlavs.getPatientDB().getPatientLog(patient1).getKnownDiseasesList());
+		System.out.println("\nRead from file:");
+		System.out.println("Medications:"+ stOlavs.getPatientDB().getPatientLog(patient1).getGivenMedicationList());
+		System.out.println("Known diseases:"+ stOlavs.getPatientDB().getPatientLog(patient1).getKnownDiseasesList());
 	}
 	
 
