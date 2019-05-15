@@ -1,4 +1,4 @@
-# Eksamensforelesning-2019
+# Uoffisiell eksamensforelesning i TDT4100 Objektorientert Programmering våren 2019
 
 Kode og slides fra eksamensforelesning i TDT4100 Objektorientert Programmering med Java våren 2019
 
