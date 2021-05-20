@@ -1,11 +1,10 @@
-package helse_mal;
+package lf;
 
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
-public class Patient extends Person //implements Iterable<Symptom> 
-{
+public class Patient extends Person implements Iterable<Symptom> {
 
 	private List<Symptom> symptomsList;
 	private Medication currentMedication = null;
@@ -15,17 +14,25 @@ public class Patient extends Person //implements Iterable<Symptom>
 		this.symptomsList = Arrays.asList(symptoms);
 	}
 
+	@Override
+	public Iterator<Symptom> iterator() {
+		return symptomsList.iterator();
+	}
+
 	public void receiveMedication(Medication medication) {
-		if(this.currentMedication == null) {
-			this.currentMedication = medication;
+		if (currentMedication == null) {
+			currentMedication = medication;
 		} else {
-			throw new IllegalArgumentException("Patient is already on medication");
+			throw new IllegalStateException("Patient is already on medication");
 		}
 	}
-	
+
 	public Medication getCurrentMedication() {
 		return currentMedication;
 	}
 
-	
+	public void stopMedication() {
+		currentMedication = null;
+	}
+
 }

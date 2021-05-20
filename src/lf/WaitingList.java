@@ -1,12 +1,13 @@
-package helse_ferdig;
+package lf;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class WaitingList implements ObservableList {
-	
+public class WaitingList implements ObservableList
+{
+
 	List<Patient> patientList = new ArrayList<>();
-	List<ListListener> listListeners = new ArrayList<>();
+	List<ListListener> waitingListListeners = new ArrayList<>();
 
 	public void addPatient(Patient patient) {
 		if(!this.patientList.contains(patient)) {
@@ -19,37 +20,31 @@ public class WaitingList implements ObservableList {
 			this.patientList.remove(patient);
 		}
 	}
-	
+
 	public Patient handlePatient() {
 		Patient nextPatient = this.patientList.remove(0);
 		System.out.println(nextPatient.getName()+" ready to be handled");
-		this.fireListChanged(nextPatient);
+		// send til lyttere
 		return nextPatient;
 	}
-	
 
-	// Observator-observable-teknikken:
-	
 	@Override
 	public void addListener(ListListener listener) {
-		if(!this.listListeners.contains(listener)) {
-			this.listListeners.add(listener);
+		if (!this.waitingListListeners.contains(listener)) {
+			this.waitingListListeners.add(listener);
 		}
 	}
 
 	@Override
 	public void removeListener(ListListener listener) {
-		if(this.listListeners.contains(listener)) {
-			this.listListeners.remove(listener);
+		if (this.waitingListListeners.contains(listener)) {
+			this.waitingListListeners.remove(listener);
 		}
 	}
 
 	@Override
 	public void fireListChanged(Patient patient) {
-		for(ListListener listener : this.listListeners) {
-			listener.listChanged(patient, this.patientList.size());
-		}
-		
+		waitingListListeners.forEach(listener -> listener.listChanged(patient));
 	}
 
 }

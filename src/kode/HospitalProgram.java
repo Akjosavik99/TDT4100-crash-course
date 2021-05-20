@@ -1,14 +1,14 @@
-package helse_ferdig;
+package kode;
 
 import java.io.IOException;
 
 public class HospitalProgram {
-	
+
 	public static void main(String[] args) {
-		
+
 		Symptom headache = new Symptom("Headache");
 		Symptom fever = new Symptom("Fever");
-		
+
 		Disease migraine = new Disease("Migraine");
 		Medication naproxen = new Medication("Naproxen", 100);
 		migraine.setRemedy(naproxen);
@@ -19,14 +19,14 @@ public class HospitalProgram {
 
 		headache.addKnownCause(migraine);
 		fever.addKnownCause(influenza);
-		
+
 		Hospital stOlavs = new Hospital();
 		Nurse nurse1 = new Nurse("Kari", 25, stOlavs);
 		Nurse nurse2 = new Nurse("Trond", 37, stOlavs);
 		Nurse nurse3 = new Nurse("Nina", 50, stOlavs);
 		Doctor doctor1 = new Doctor("John", 40, stOlavs, nurse1, nurse2);
 		Doctor doctor2 = new Doctor("Anne", 30, stOlavs, nurse3);
-		
+
 		stOlavs.addEmployee(nurse1);
 		stOlavs.addEmployee(nurse2);
 		stOlavs.addEmployee(nurse3);
@@ -34,17 +34,17 @@ public class HospitalProgram {
 		stOlavs.addEmployee(doctor2);
 		stOlavs.getWaitingList().addListener(doctor1);
 		stOlavs.getWaitingList().addListener(doctor2);
-		
-		Patient patient1 = new Patient("Magnus", 22, headache, fever);
-		
+
+		Patient patient1 = new Patient("Magnus", 23, headache, fever);
+
 		stOlavs.admit(patient1);
 		stOlavs.getPatientDB().addPatientLog(patient1);
 		stOlavs.handlePatient();
-		
-		System.out.println("\nPatientLog for "+ patient1 +"\nCurrent medication: "+patient1.getCurrentMedication().getName());
-		System.out.println("Medications:"+ stOlavs.getPatientDB().getPatientLog(patient1).getGivenMedicationList());
-		System.out.println("Known diseases:"+ stOlavs.getPatientDB().getPatientLog(patient1).getKnownDiseasesList()+"\n");
-		
+
+		System.out.println(patient1.getCurrentMedication().getName());
+		System.out.println(stOlavs.getPatientDB().getPatientLog(patient1).getGivenMedicationList());
+		System.out.println(stOlavs.getPatientDB().getPatientLog(patient1).getKnownDiseasesList());
+
 		try {
 			stOlavs.getPatientDB().getPatientLog(patient1).save("./magnus.txt");
 		} catch (IOException e) {
@@ -56,10 +56,10 @@ public class HospitalProgram {
 		} catch (IOException e) {
 			System.out.println("Kunne ikke hente fra fil");
 		}
-		System.out.println("\nRead from file:");
-		System.out.println("Medications:"+ stOlavs.getPatientDB().getPatientLog(patient1).getGivenMedicationList());
-		System.out.println("Known diseases:"+ stOlavs.getPatientDB().getPatientLog(patient1).getKnownDiseasesList());
+
+		System.out.println(stOlavs.getPatientDB().getPatientLog(patient1).getGivenMedicationList());
+		System.out.println(stOlavs.getPatientDB().getPatientLog(patient1).getKnownDiseasesList());
 	}
-	
+
 
 }
