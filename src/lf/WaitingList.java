@@ -24,7 +24,7 @@ public class WaitingList implements ObservableList
 	public Patient handlePatient() {
 		Patient nextPatient = this.patientList.remove(0);
 		System.out.println(nextPatient.getName()+" ready to be handled");
-		// send til lyttere
+		fireListChanged(nextPatient);
 		return nextPatient;
 	}
 
