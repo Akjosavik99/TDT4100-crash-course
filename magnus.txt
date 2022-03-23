@@ -1,2 +1,2 @@
-Migraine,Influenza,
+Migraine,
 Paracet,
