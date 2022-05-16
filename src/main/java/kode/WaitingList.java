@@ -3,10 +3,11 @@ package kode;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WaitingList {
+public class WaitingList implements kode.ObservableList {
 
 	List<Patient> patientList = new ArrayList<>();
 	List<ListListener> waitingListListeners = new ArrayList<>();
+	private ListListener listener;
 
 	public void addPatient(Patient patient) {
 		if (!this.patientList.contains(patient)) {
@@ -23,8 +24,29 @@ public class WaitingList {
 	public Patient handlePatient() {
 		Patient nextPatient = this.patientList.remove(0);
 		System.out.println(nextPatient.getName() + " ready to be handled");
-		// send til lyttere
+		fireListChanged(nextPatient);
 		return nextPatient;
 	}
+
+	@Override
+	public void addListener(ListListener listener) {
+		if (!this.waitingListListeners.contains(listener)){
+			this.waitingListListeners.add(listener);
+		}
+	}
+
+	@Override
+	public void removeListener(ListListener listener) {
+		if (this.waitingListListeners.contains(listener)){
+			this.waitingListListeners.remove(listener);
+		}
+		
+	}
+
+	@Override
+	public void fireListChanged(Patient patient) {
+		waitingListListeners.forEach(listener -> listener.listChanged(patient));
+	}
+
 
 }

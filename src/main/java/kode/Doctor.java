@@ -1,9 +1,12 @@
 package kode;
 
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class Doctor extends Person implements Employee {
+
+public class Doctor extends Person implements Employee, ListListener {
 
 	private Hospital employer;
 	private List<Employee> assistants;
@@ -44,5 +47,47 @@ public class Doctor extends Person implements Employee {
 	@Override
 	public Hospital getEmployer() {
 		return employer;
+	}
+
+	public List<Nurse> getNurseList() {
+		return assistants
+				.stream() //Oppretter stream
+				.filter(e -> e instanceof Nurse) //Filtrerer ut alle nurses
+				.map(e -> (Nurse) e) //Caster til nurse
+				.collect(Collectors.toList()); //Returnerer alle nurses
+	}
+
+	public Medication diagnose(Patient patient){
+		PatientLog patientLog = employer.getPatientDB().getPatientLog(patient);
+		Iterator<Symptom> patientSymptomIterator = patient.iterator();
+		Symptom symptom = null;
+
+		while (patientSymptomIterator.hasNext()){
+			symptom = patientSymptomIterator.next();
+			for (Disease cause : symptom.getKnownCauses()){
+				patientLog.addDisease(cause);
+				if (!patientLog.getGivenMedicationList().contains(cause.getRemedy())){
+					return cause.getRemedy();
+				}
+			}
+		}
+
+		return null;
+	}
+
+	@Override
+	public void medicate(Patient patient, Medication medication) { //Delegering
+		if (medication == null){
+			return;
+		}
+		Nurse randomNurse = this.getNurseList().get((int) Math.floor(Math.random()*getNurseList().size()));
+		randomNurse.medicate(patient, medication);
+	}
+
+	@Override
+	public void listChanged(Patient patient) {
+		if (this.isAvailable){
+			this.medicate(patient, diagnose(patient));
+		}
 	}
 }

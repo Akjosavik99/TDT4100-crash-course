@@ -7,6 +7,16 @@ public class PatientDatabase {
 
 	private Collection<PatientLog> patientLogs = new ArrayList<>();
 
+	public PatientLog getPatientLog(Patient patient){
+		return patientLogs
+				.stream()
+				.filter(p -> p.getPatient() == patient)
+				.findFirst()
+				.orElseThrow(
+					() -> new IllegalArgumentException("Patient does not have a log")
+				);
+	}
+
 	// Legger til PatientLog dersom Patient-objektet vi gir som input
 	// ikke allerede har en tilhørende PatientLog i systemet
 	public void addPatientLog(Patient patient) {

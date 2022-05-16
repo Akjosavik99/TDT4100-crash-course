@@ -25,4 +25,13 @@ public class Nurse extends Person implements Employee {
 	public Hospital getEmployer() {
 		return employer;
 	}
+
+	@Override
+	public void medicate(Patient patient, Medication medication) {
+		if (patient.getCurrentMedication() == null){
+			patient.recieveMedication(medication);
+			this.employer.getPatientDB().getPatientLog(patient).addMedication(medication);
+		}
+		System.out.println(this.getName() + " medicated " + patient.getName());
+	}
 }

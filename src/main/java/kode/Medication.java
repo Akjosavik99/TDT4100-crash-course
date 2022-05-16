@@ -1,6 +1,6 @@
 package kode;
 
-public class Medication {
+public class Medication implements Comparable<Medication> {
 
 	private String name;
 	private double price = Double.NaN;
@@ -36,6 +36,11 @@ public class Medication {
 		if (price < 0){
 			throw new IllegalArgumentException("Price cannot be below zero");
 		}
+	}
+
+	@Override
+	public int compareTo(Medication m) {
+		return Double.compare(this.getPrice(), m.getPrice());
 	}
 
 }
