@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import lf.Employee;
-import lf.Patient;
-
 public class Hospital {
 
 	private List<Employee> employees = new ArrayList<>();

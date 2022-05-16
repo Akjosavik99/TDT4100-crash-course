@@ -86,7 +86,7 @@ public class Doctor extends Person implements Employee, ListListener {
 
 	@Override
 	public void listChanged(Patient patient) {
-		if (this.isAvailable){
+		if (this.isAvailable && patient.getCurrentMedication() == null){
 			this.medicate(patient, diagnose(patient));
 		}
 	}

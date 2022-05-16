@@ -10,10 +10,9 @@ public class Patient extends Person implements Iterable<Symptom>{
     private Medication currentMedication = null;
 
 
-    public Patient(String name, int age, Symptom symptom) {
+    public Patient(String name, int age, Symptom symptom, Symptom fever) {
         super(name, age);
         this.symptomsList = Arrays.asList(symptom);
-
     }
 
     @Override
